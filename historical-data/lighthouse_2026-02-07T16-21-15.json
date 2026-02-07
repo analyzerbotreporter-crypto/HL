@@ -1,0 +1,56 @@
+{
+  "timestamp": "2026-02-07T16:21:15.274Z",
+  "date": "sábado, 7 de febrero de 2026, 17:21",
+  "results": [
+    {
+      "url": "https://www.movistar.es",
+      "desktop": {
+        "performance": 83,
+        "accessibility": 92,
+        "bestPractices": 96,
+        "seo": 100,
+        "fcp": 953,
+        "lcp": 1851,
+        "tbt": 1,
+        "cls": 0.15194451771527523,
+        "si": 1420
+      },
+      "mobile": {
+        "performance": 38,
+        "accessibility": 96,
+        "bestPractices": 96,
+        "seo": 100,
+        "fcp": 2459,
+        "lcp": 9066,
+        "tbt": 4220,
+        "cls": null,
+        "si": 5597
+      }
+    },
+    {
+      "url": "https://www.movistar.es/autonomos",
+      "desktop": {
+        "performance": 85,
+        "accessibility": 87,
+        "bestPractices": 81,
+        "seo": 85,
+        "fcp": 1212,
+        "lcp": 2215,
+        "tbt": 5,
+        "cls": 0.008852024539460745,
+        "si": 1325
+      },
+      "mobile": {
+        "performance": 42,
+        "accessibility": 87,
+        "bestPractices": 79,
+        "seo": 85,
+        "fcp": 12136,
+        "lcp": 14632,
+        "tbt": 518,
+        "cls": null,
+        "si": 12136
+      }
+    }
+  ]
+}
