@@ -1,0 +1,20 @@
+# Node
+node_modules/
+npm-debug.log
+
+# Lighthouse temporal files
+temp_*.json
+
+# Generated reports (se suben via GitHub Actions)
+lighthouse_results_*.csv
+lighthouse_email_*.html
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo

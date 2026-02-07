@@ -1,0 +1,73 @@
+name: Lighthouse Analysis
+
+on:
+  schedule:
+    # Ejecutar todos los lunes a las 8:00 AM UTC (9:00 AM CET)
+    - cron: '0 8 * * 1'
+  workflow_dispatch: # Permite ejecución manual desde GitHub
+
+jobs:
+  lighthouse-analysis:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      
+      - name: Install Lighthouse
+        run: npm install -g lighthouse
+      
+      - name: Run Lighthouse Analysis
+        env:
+          LIGHTHOUSE_URLS: ${{ vars.LIGHTHOUSE_URLS }}
+        run: node analyzer.js
+      
+      - name: Get file names
+        id: files
+        run: |
+          CSV_FILE=$(ls lighthouse_results_*.csv | head -n 1)
+          HTML_FILE=$(ls lighthouse_email_*.html | head -n 1)
+          echo "csv=$CSV_FILE" >> $GITHUB_OUTPUT
+          echo "html=$HTML_FILE" >> $GITHUB_OUTPUT
+          echo "Found files: CSV=$CSV_FILE, HTML=$HTML_FILE"
+      
+      - name: Send Email with Report
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.gmail.com
+          server_port: 465
+          secure: true
+          username: ${{ secrets.EMAIL_USERNAME }}
+          password: ${{ secrets.EMAIL_PASSWORD }}
+          subject: '📊 Lighthouse Analysis Results - ${{ github.run_number }}'
+          to: ${{ vars.EMAIL_RECIPIENTS }}
+          from: Lighthouse Analyzer <${{ secrets.EMAIL_USERNAME }}>
+          html_body: file://${{ steps.files.outputs.html }}
+          attachments: ${{ steps.files.outputs.csv }}
+          ignore_cert: false
+          convert_markdown: false
+      
+      - name: Upload Results (Artifacts)
+        uses: actions/upload-artifact@v4
+        with:
+          name: lighthouse-results-${{ github.run_number }}
+          path: |
+            lighthouse_results_*.csv
+            lighthouse_email_*.html
+            historical-data/*.json
+          retention-days: 400
+      
+      - name: Commit and Push Historical Data
+        run: |
+          git config --global user.name 'GitHub Actions Bot'
+          git config --global user.email 'actions@github.com'
+          git add historical-data/*.json || true
+          git commit -m "📊 Lighthouse results - $(date +'%Y-%m-%d %H:%M:%S')" || true
+          git push || true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
