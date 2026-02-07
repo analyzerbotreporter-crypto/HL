@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Lighthouse Dashboard - Evolución Histórica</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      padding: 20px;
+      min-height: 100vh;
+    }
+    
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 16px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+      overflow: hidden;
+    }
+    
+    .header {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 30px;
+      text-align: center;
+    }
+    
+    .header h1 {
+      font-size: 32px;
+      margin-bottom: 10px;
+    }
+    
+    .header p {
+      font-size: 16px;
+      opacity: 0.9;
+    }
+    
+    .controls {
+      padding: 30px;
+      background: #f8f9fa;
+      border-bottom: 2px solid #e9ecef;
+      display: grid;
+      grid-template-columns: 1fr 1fr 300px;
+      gap: 20px;
+      align-items: end;
+    }
+    
+    .control-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    
+    .control-group label {
+      font-weight: 600;
+      color: #495057;
+      font-size: 14px;
+    }
+    
+    select, .toggle-buttons {
+      padding: 12px;
+      border: 2px solid #dee2e6;
+      border-radius: 8px;
+      font-size: 14px;
+      background: white;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    
+    select:hover, select:focus {
+      border-color: #667eea;
+      outline: none;
+    }
+    
+    .toggle-buttons {
+      display: flex;
+      padding: 4px;
+      background: #e9ecef;
+    }
+    
+    .toggle-btn {
+      flex: 1;
+      padding: 10px;
+      border: none;
+      background: transparent;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 14px;
+      border-radius: 6px;
+      transition: all 0.3s;
+      color: #495057;
+    }
+    
+    .toggle-btn.active {
+      background: white;
+      color: #667eea;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    
+    .loading {
+      text-align: center;
+      padding: 60px 30px;
+      color: #6c757d;
+      font-size: 18px;
+    }
+    
+    .spinner {
+      border: 4px solid #f3f3f3;
+      border-top: 4px solid #667eea;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      animation: spin 1s linear infinite;
+      margin: 0 auto 20px;
+    }
+    
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    
+    .charts-grid {
+      padding: 30px;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 30px;
+    }
+    
+    .chart-container {
+      background: white;
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      border: 1px solid #e9ecef;
+    }
+    
+    .chart-container h3 {
+      margin-bottom: 15px;
+      color: #343a40;
+      font-size: 18px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    .chart-icon {
+      font-size: 24px;
+    }
+    
+    canvas {
+      max-height: 300px;
+    }
+    
+    .no-data {
+      text-align: center;
+      padding: 60px 30px;
+      color: #6c757d;
+    }
+    
+    .no-data-icon {
+      font-size: 64px;
+      margin-bottom: 20px;
+    }
+    
+    .stats-summary {
+      padding: 20px 30px;
+      background: #f8f9fa;
+      border-top: 2px solid #e9ecef;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+    
+    .stat-card {
+      text-align: center;
+      padding: 15px;
+      background: white;
+      border-radius: 8px;
+      border: 1px solid #e9ecef;
+    }
+    
+    .stat-value {
+      font-size: 32px;
+      font-weight: 700;
+      margin-bottom: 5px;
+    }
+    
+    .stat-label {
+      font-size: 12px;
+      color: #6c757d;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    
+    .stat-trend {
+      font-size: 14px;
+      margin-top: 8px;
+      font-weight: 600;
+    }
+    
+    .trend-up { color: #28a745; }
+    .trend-down { color: #dc3545; }
+    .trend-neutral { color: #6c757d; }
+    
+    @media (max-width: 1200px) {
+      .charts-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .controls {
+        grid-template-columns: 1fr;
+      }
+      
+      .stats-summary {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>📊 Lighthouse Dashboard</h1>
+      <p>Evolución histórica de métricas de rendimiento y calidad</p>
+    </div>
+    
+    <div class="controls">
+      <div class="control-group">
+        <label for="urlSelect">🔗 Seleccionar URL:</label>
+        <select id="urlSelect">
+          <option value="">Cargando URLs...</option>
+        </select>
+      </div>
+      
+      <div class="control-group">
+        <label>📱 Dispositivo:</label>
+        <div class="toggle-buttons">
+          <button class="toggle-btn active" data-device="mobile">Mobile</button>
+          <button class="toggle-btn" data-device="desktop">Desktop</button>
+        </div>
+      </div>
+      
+      <div class="control-group">
+        <label>📅 Período:</label>
+        <select id="periodSelect">
+          <option value="all">Todo el histórico</option>
+          <option value="30">Últimos 30 días</option>
+          <option value="90">Últimos 90 días</option>
+          <option value="180">Últimos 180 días</option>
+        </select>
+      </div>
+    </div>
+    
+    <div id="statsSection" class="stats-summary" style="display: none;">
+      <div class="stat-card">
+        <div class="stat-value" id="statPerf">--</div>
+        <div class="stat-label">Performance</div>
+        <div class="stat-trend" id="trendPerf"></div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value" id="statAcc">--</div>
+        <div class="stat-label">Accessibility</div>
+        <div class="stat-trend" id="trendAcc"></div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value" id="statBP">--</div>
+        <div class="stat-label">Best Practices</div>
+        <div class="stat-trend" id="trendBP"></div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value" id="statSEO">--</div>
+        <div class="stat-label">SEO</div>
+        <div class="stat-trend" id="trendSEO"></div>
+      </div>
+    </div>
+    
+    <div id="loadingSection" class="loading">
+      <div class="spinner"></div>
+      <p>Cargando datos históricos...</p>
+    </div>
+    
+    <div id="noDataSection" class="no-data" style="display: none;">
+      <div class="no-data-icon">📭</div>
+      <h2>No hay datos disponibles</h2>
+      <p>Selecciona una URL para ver su evolución histórica</p>
+    </div>
+    
+    <div id="chartsSection" class="charts-grid" style="display: none;">
+      <div class="chart-container">
+        <h3><span class="chart-icon">⚡</span> Performance</h3>
+        <canvas id="chartPerformance"></canvas>
+      </div>
+      
+      <div class="chart-container">
+        <h3><span class="chart-icon">♿</span> Accessibility</h3>
+        <canvas id="chartAccessibility"></canvas>
+      </div>
+      
+      <div class="chart-container">
+        <h3><span class="chart-icon">✨</span> Best Practices</h3>
+        <canvas id="chartBestPractices"></canvas>
+      </div>
+      
+      <div class="chart-container">
+        <h3><span class="chart-icon">🔍</span> SEO</h3>
+        <canvas id="chartSEO"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let historicalData = [];
+    let charts = {};
+    let selectedDevice = 'mobile';
+    let selectedPeriod = 'all';
+    
+    // Cargar datos históricos desde GitHub
+    async function loadHistoricalData() {
+      try {
+        // Obtener la lista de archivos JSON del directorio historical-data
+        const repoUrl = 'https://api.github.com/repos/analyzerbotreporter-crypto/HL/contents/historical-data';
+        const response = await fetch(repoUrl);
+        const files = await response.json();
+        
+        // Filtrar solo archivos JSON
+        const jsonFiles = files.filter(file => file.name.endsWith('.json'));
+        
+        // Cargar cada archivo JSON
+        const dataPromises = jsonFiles.map(file => 
+          fetch(file.download_url).then(r => r.json())
+        );
+        
+        historicalData = await Promise.all(dataPromises);
+        historicalData.sort((a, b) => new Date(a.timestamp) - new Date(b.timestamp));
+        
+        populateURLSelect();
+        document.getElementById('loadingSection').style.display = 'none';
+        document.getElementById('noDataSection').style.display = 'block';
+      } catch (error) {
+        console.error('Error loading data:', error);
+        document.getElementById('loadingSection').innerHTML = 
+          '<div class="no-data-icon">⚠️</div><h2>Error al cargar datos</h2><p>' + error.message + '</p>';
+      }
+    }
+    
+    // Poblar el selector de URLs
+    function populateURLSelect() {
+      const urlSet = new Set();
+      historicalData.forEach(data => {
+        data.results.forEach(result => {
+          urlSet.add(result.url);
+        });
+      });
+      
+      const select = document.getElementById('urlSelect');
+      select.innerHTML = '<option value="">Selecciona una URL...</option>';
+      
+      Array.from(urlSet).sort().forEach(url => {
+        const option = document.createElement('option');
+        option.value = url;
+        option.textContent = url;
+        select.appendChild(option);
+      });
+    }
+    
+    // Filtrar datos por período
+    function filterByPeriod(data) {
+      if (selectedPeriod === 'all') return data;
+      
+      const days = parseInt(selectedPeriod);
+      const cutoffDate = new Date();
+      cutoffDate.setDate(cutoffDate.getDate() - days);
+      
+      return data.filter(d => new Date(d.timestamp) >= cutoffDate);
+    }
+    
+    // Renderizar gráficos
+    function renderCharts(url) {
+      if (!url) {
+        document.getElementById('chartsSection').style.display = 'none';
+        document.getElementById('statsSection').style.display = 'none';
+        document.getElementById('noDataSection').style.display = 'block';
+        return;
+      }
+      
+      // Filtrar datos para la URL seleccionada
+      let filteredData = historicalData
+        .map(data => ({
+          timestamp: data.timestamp,
+          result: data.results.find(r => r.url === url)
+        }))
+        .filter(d => d.result);
+      
+      // Aplicar filtro de período
+      filteredData = filterByPeriod(filteredData);
+      
+      if (filteredData.length === 0) {
+        document.getElementById('chartsSection').style.display = 'none';
+        document.getElementById('statsSection').style.display = 'none';
+        document.getElementById('noDataSection').style.display = 'block';
+        return;
+      }
+      
+      document.getElementById('noDataSection').style.display = 'none';
+      document.getElementById('chartsSection').style.display = 'grid';
+      document.getElementById('statsSection').style.display = 'grid';
+      
+      // Extraer datos del dispositivo seleccionado
+      const labels = filteredData.map(d => new Date(d.timestamp).toLocaleDateString('es-ES'));
+      const performance = filteredData.map(d => d.result[selectedDevice].performance);
+      const accessibility = filteredData.map(d => d.result[selectedDevice].accessibility);
+      const bestPractices = filteredData.map(d => d.result[selectedDevice].bestPractices);
+      const seo = filteredData.map(d => d.result[selectedDevice].seo);
+      
+      // Actualizar estadísticas
+      updateStats(performance, accessibility, bestPractices, seo);
+      
+      // Destruir gráficos anteriores
+      Object.values(charts).forEach(chart => chart.destroy());
+      
+      // Crear nuevos gráficos
+      charts.performance = createChart('chartPerformance', labels, performance, 'Performance', '#667eea');
+      charts.accessibility = createChart('chartAccessibility', labels, accessibility, 'Accessibility', '#28a745');
+      charts.bestPractices = createChart('chartBestPractices', labels, bestPractices, 'Best Practices', '#ffa500');
+      charts.seo = createChart('chartSEO', labels, seo, 'SEO', '#17a2b8');
+    }
+    
+    // Crear gráfico individual
+    function createChart(canvasId, labels, data, label, color) {
+      const ctx = document.getElementById(canvasId).getContext('2d');
+      
+      return new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels: labels,
+          datasets: [{
+            label: label,
+            data: data,
+            borderColor: color,
+            backgroundColor: color + '20',
+            borderWidth: 3,
+            fill: true,
+            tension: 0.4,
+            pointRadius: 4,
+            pointHoverRadius: 6,
+            pointBackgroundColor: color,
+            pointBorderColor: '#fff',
+            pointBorderWidth: 2
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: true,
+          plugins: {
+            legend: {
+              display: false
+            },
+            tooltip: {
+              backgroundColor: 'rgba(0,0,0,0.8)',
+              padding: 12,
+              titleFont: { size: 14 },
+              bodyFont: { size: 13 },
+              callbacks: {
+                label: function(context) {
+                  return label + ': ' + context.parsed.y;
+                }
+              }
+            }
+          },
+          scales: {
+            y: {
+              beginAtZero: true,
+              max: 100,
+              ticks: {
+                stepSize: 20
+              },
+              grid: {
+                color: 'rgba(0,0,0,0.05)'
+              }
+            },
+            x: {
+              grid: {
+                display: false
+              },
+              ticks: {
+                maxRotation: 45,
+                minRotation: 45
+              }
+            }
+          }
+        }
+      });
+    }
+    
+    // Actualizar estadísticas
+    function updateStats(perf, acc, bp, seo) {
+      updateStat('Perf', perf);
+      updateStat('Acc', acc);
+      updateStat('BP', bp);
+      updateStat('SEO', seo);
+    }
+    
+    function updateStat(metric, data) {
+      const validData = data.filter(v => v !== null && v !== undefined);
+      if (validData.length === 0) return;
+      
+      const latest = validData[validData.length - 1];
+      const previous = validData.length > 1 ? validData[validData.length - 2] : latest;
+      const trend = latest - previous;
+      
+      document.getElementById('stat' + metric).textContent = latest;
+      
+      const trendEl = document.getElementById('trend' + metric);
+      if (trend > 0) {
+        trendEl.textContent = `▲ +${trend}`;
+        trendEl.className = 'stat-trend trend-up';
+      } else if (trend < 0) {
+        trendEl.textContent = `▼ ${trend}`;
+        trendEl.className = 'stat-trend trend-down';
+      } else {
+        trendEl.textContent = '━ Sin cambios';
+        trendEl.className = 'stat-trend trend-neutral';
+      }
+    }
+    
+    // Event listeners
+    document.getElementById('urlSelect').addEventListener('change', (e) => {
+      renderCharts(e.target.value);
+    });
+    
+    document.querySelectorAll('.toggle-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        document.querySelectorAll('.toggle-btn').forEach(b => b.classList.remove('active'));
+        e.target.classList.add('active');
+        selectedDevice = e.target.dataset.device;
+        renderCharts(document.getElementById('urlSelect').value);
+      });
+    });
+    
+    document.getElementById('periodSelect').addEventListener('change', (e) => {
+      selectedPeriod = e.target.value;
+      renderCharts(document.getElementById('urlSelect').value);
+    });
+    
+    // Cargar datos al iniciar
+    loadHistoricalData();
+  </script>
+</body>
+</html>

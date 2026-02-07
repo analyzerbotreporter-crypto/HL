@@ -1,0 +1,56 @@
+{
+  "timestamp": "2026-02-07T13:51:00.324Z",
+  "date": "sábado, 7 de febrero de 2026, 14:51",
+  "results": [
+    {
+      "url": "https://www.movistar.es",
+      "desktop": {
+        "performance": 78,
+        "accessibility": 92,
+        "bestPractices": 96,
+        "seo": 100,
+        "fcp": 972,
+        "lcp": 2435,
+        "tbt": 1,
+        "cls": 0.15194451771527523,
+        "si": 1491
+      },
+      "mobile": {
+        "performance": 37,
+        "accessibility": 96,
+        "bestPractices": 96,
+        "seo": 100,
+        "fcp": 2281,
+        "lcp": 8731,
+        "tbt": 1232,
+        "cls": 0.2299316470619382,
+        "si": 3135
+      }
+    },
+    {
+      "url": "https://www.movistar.es/empleados",
+      "desktop": {
+        "performance": 81,
+        "accessibility": 100,
+        "bestPractices": 100,
+        "seo": 54,
+        "fcp": 1475,
+        "lcp": 2513,
+        "tbt": null,
+        "cls": 0.02195140812061662,
+        "si": 1475
+      },
+      "mobile": {
+        "performance": 53,
+        "accessibility": 98,
+        "bestPractices": 100,
+        "seo": 54,
+        "fcp": 13304,
+        "lcp": 14058,
+        "tbt": 163,
+        "cls": null,
+        "si": 13304
+      }
+    }
+  ]
+}
