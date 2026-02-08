@@ -14,7 +14,7 @@ if (!urlsFromEnv || urlsFromEnv.trim() === '') {
   console.error('Ve a: Settings > Secrets and variables > Actions > Variables\n');
   process.exit(1);
 }
- 
+
 const urls = urlsFromEnv
   .split(',')
   .map(url => url.trim())
