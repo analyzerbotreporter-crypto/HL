@@ -1,0 +1,456 @@
+{
+  "timestamp": "2026-02-08T07:43:13.404Z",
+  "date": "domingo, 8 de febrero de 2026, 8:43",
+  "results": [
+    {
+      "url": "https://www.movistar.es",
+      "desktop": {
+        "performance": 79,
+        "accessibility": 92,
+        "bestPractices": 96,
+        "seo": 100,
+        "fcp": 1199,
+        "lcp": 2092,
+        "tbt": null,
+        "cls": 0.15194451771527523,
+        "si": 1747
+      },
+      "mobile": {
+        "performance": 35,
+        "accessibility": 96,
+        "bestPractices": 96,
+        "seo": 100,
+        "fcp": 2527,
+        "lcp": 8977,
+        "tbt": 996,
+        "cls": 0.24191308444318127,
+        "si": 4317
+      }
+    },
+    {
+      "url": "https://www.movistar.es/autonomos",
+      "desktop": {
+        "performance": 78,
+        "accessibility": 87,
+        "bestPractices": 81,
+        "seo": 85,
+        "fcp": 1604,
+        "lcp": 2710,
+        "tbt": null,
+        "cls": 0.01715109191606393,
+        "si": 1699
+      },
+      "mobile": {
+        "performance": 52,
+        "accessibility": 87,
+        "bestPractices": 79,
+        "seo": 85,
+        "fcp": 4112,
+        "lcp": 9416,
+        "tbt": 451,
+        "cls": 0.013984423630973557,
+        "si": 5432
+      }
+    },
+    {
+      "url": "https://www.telefonicaempresas.es",
+      "desktop": {
+        "performance": 63,
+        "accessibility": 79,
+        "bestPractices": 96,
+        "seo": 85,
+        "fcp": 1751,
+        "lcp": 4486,
+        "tbt": null,
+        "cls": 0.13784191590137418,
+        "si": 1976
+      },
+      "mobile": {
+        "performance": 50,
+        "accessibility": 83,
+        "bestPractices": 96,
+        "seo": 85,
+        "fcp": 3276,
+        "lcp": 8878,
+        "tbt": 338,
+        "cls": 0.17576976482811474,
+        "si": 5108
+      }
+    },
+    {
+      "url": "https://www.telefonicaempresas.es/internet-empresas",
+      "desktop": {
+        "performance": 82,
+        "accessibility": 76,
+        "bestPractices": 100,
+        "seo": 83,
+        "fcp": 1437,
+        "lcp": 2378,
+        "tbt": null,
+        "cls": 0.010280979679672331,
+        "si": 1483
+      },
+      "mobile": {
+        "performance": 67,
+        "accessibility": 80,
+        "bestPractices": 100,
+        "seo": 83,
+        "fcp": 3004,
+        "lcp": 6644,
+        "tbt": 240,
+        "cls": 0.007245242319660748,
+        "si": 3247
+      }
+    },
+    {
+      "url": "https://www.telefonicaempresas.es/internet-empresas/fibra-300-mb-empresas",
+      "desktop": {
+        "performance": 75,
+        "accessibility": 77,
+        "bestPractices": 100,
+        "seo": 92,
+        "fcp": 1426,
+        "lcp": 3555,
+        "tbt": null,
+        "cls": 0.0014534678461181234,
+        "si": 1585
+      },
+      "mobile": {
+        "performance": 55,
+        "accessibility": 77,
+        "bestPractices": 100,
+        "seo": 92,
+        "fcp": 5179,
+        "lcp": 9700,
+        "tbt": 201,
+        "cls": 0.004498383083455721,
+        "si": 8013
+      }
+    },
+    {
+      "url": "https://www.telefonicaempresas.es/tarifas-moviles-empresas",
+      "desktop": {
+        "performance": 82,
+        "accessibility": 76,
+        "bestPractices": 96,
+        "seo": 83,
+        "fcp": 1408,
+        "lcp": 2345,
+        "tbt": null,
+        "cls": 0.016487480402134585,
+        "si": 1408
+      },
+      "mobile": {
+        "performance": 66,
+        "accessibility": 80,
+        "bestPractices": 96,
+        "seo": 83,
+        "fcp": 2984,
+        "lcp": 6689,
+        "tbt": 263,
+        "cls": 0.0020378001118420788,
+        "si": 3432
+      }
+    },
+    {
+      "url": "https://www.telefonicaempresas.es/tarifas-moviles-empresas/plus-basica-movil",
+      "desktop": {
+        "performance": 81,
+        "accessibility": 77,
+        "bestPractices": 96,
+        "seo": 92,
+        "fcp": 1427,
+        "lcp": 2467,
+        "tbt": null,
+        "cls": 0.0011364727620619389,
+        "si": 1540
+      },
+      "mobile": {
+        "performance": 56,
+        "accessibility": 77,
+        "bestPractices": 96,
+        "seo": 92,
+        "fcp": 4825,
+        "lcp": 9857,
+        "tbt": 208,
+        "cls": 0.004093906912298159,
+        "si": 6848
+      }
+    },
+    {
+      "url": "https://www.telefonicaempresas.es/moviles-empresas",
+      "desktop": {
+        "performance": 80,
+        "accessibility": 77,
+        "bestPractices": 100,
+        "seo": 85,
+        "fcp": 1406,
+        "lcp": 2609,
+        "tbt": null,
+        "cls": 0.018861636198171418,
+        "si": 1491
+      },
+      "mobile": {
+        "performance": 62,
+        "accessibility": 79,
+        "bestPractices": 100,
+        "seo": 85,
+        "fcp": 3299,
+        "lcp": 8010,
+        "tbt": 232,
+        "cls": 0.00011457366439939908,
+        "si": 4913
+      }
+    },
+    {
+      "url": "https://www.telefonicaempresas.es/moviles-empresas/apple-iphone-17",
+      "desktop": {
+        "performance": 56,
+        "accessibility": 77,
+        "bestPractices": 100,
+        "seo": 92,
+        "fcp": 1425,
+        "lcp": 2684,
+        "tbt": null,
+        "cls": 0.7364633556682524,
+        "si": 1493
+      },
+      "mobile": {
+        "performance": 40,
+        "accessibility": 81,
+        "bestPractices": 96,
+        "seo": 92,
+        "fcp": 3042,
+        "lcp": 8356,
+        "tbt": 177,
+        "cls": 1.0424497522366623,
+        "si": 4761
+      }
+    },
+    {
+      "url": "https://www.telefonicaempresas.es/soluciones-digitales",
+      "desktop": {
+        "performance": 82,
+        "accessibility": 77,
+        "bestPractices": 100,
+        "seo": 92,
+        "fcp": 1415,
+        "lcp": 2394,
+        "tbt": null,
+        "cls": 0.010044415913547319,
+        "si": 1512
+      },
+      "mobile": {
+        "performance": 65,
+        "accessibility": 81,
+        "bestPractices": 100,
+        "seo": 92,
+        "fcp": 3051,
+        "lcp": 7755,
+        "tbt": 172,
+        "cls": 0.01620574981634386,
+        "si": 4812
+      }
+    },
+    {
+      "url": "https://www.telefonicaempresas.es/soluciones-digitales/microsoft-365-empresas",
+      "desktop": {
+        "performance": 61,
+        "accessibility": 77,
+        "bestPractices": 100,
+        "seo": 92,
+        "fcp": 1403,
+        "lcp": 2499,
+        "tbt": null,
+        "cls": 0.4508302068041426,
+        "si": 1457
+      },
+      "mobile": {
+        "performance": 46,
+        "accessibility": 81,
+        "bestPractices": 100,
+        "seo": 92,
+        "fcp": 2967,
+        "lcp": 7105,
+        "tbt": 249,
+        "cls": 0.38849314586971234,
+        "si": 3896
+      }
+    },
+    {
+      "url": "https://www.movistar.es/autonomos/fibra-optica",
+      "desktop": {
+        "performance": 74,
+        "accessibility": 84,
+        "bestPractices": 59,
+        "seo": 92,
+        "fcp": 1643,
+        "lcp": 2959,
+        "tbt": null,
+        "cls": 0.021332442261043326,
+        "si": 2083
+      },
+      "mobile": {
+        "performance": 56,
+        "accessibility": 84,
+        "bestPractices": 61,
+        "seo": 92,
+        "fcp": 4116,
+        "lcp": 9320,
+        "tbt": 323,
+        "cls": 0.023537268020659155,
+        "si": 5105
+      }
+    },
+    {
+      "url": "https://www.movistar.es/autonomos/tarifas-movil",
+      "desktop": {
+        "performance": 76,
+        "accessibility": 84,
+        "bestPractices": 59,
+        "seo": 92,
+        "fcp": 1612,
+        "lcp": 2720,
+        "tbt": null,
+        "cls": 0.0568009215715842,
+        "si": 2023
+      },
+      "mobile": {
+        "performance": 41,
+        "accessibility": 84,
+        "bestPractices": 61,
+        "seo": 92,
+        "fcp": 4172,
+        "lcp": 10477,
+        "tbt": 335,
+        "cls": 0.25748073008507133,
+        "si": 6045
+      }
+    },
+    {
+      "url": "https://www.movistar.es/autonomos/servicios",
+      "desktop": {
+        "performance": 75,
+        "accessibility": 84,
+        "bestPractices": 78,
+        "seo": 85,
+        "fcp": 1587,
+        "lcp": 3009,
+        "tbt": 1,
+        "cls": 0.028462665732328623,
+        "si": 1919
+      },
+      "mobile": {
+        "performance": 51,
+        "accessibility": 84,
+        "bestPractices": 79,
+        "seo": 85,
+        "fcp": 4438,
+        "lcp": 11774,
+        "tbt": 455,
+        "cls": 0.004049416352079091,
+        "si": 5174
+      }
+    },
+    {
+      "url": "https://www.movistar.es/autonomos/movistar-prosegur-alarmas-negocios-pro",
+      "desktop": {
+        "performance": 74,
+        "accessibility": 84,
+        "bestPractices": 59,
+        "seo": 85,
+        "fcp": 1581,
+        "lcp": 3143,
+        "tbt": null,
+        "cls": 0.01634596973496851,
+        "si": 2026
+      },
+      "mobile": {
+        "performance": 48,
+        "accessibility": 84,
+        "bestPractices": 61,
+        "seo": 85,
+        "fcp": 4413,
+        "lcp": 9431,
+        "tbt": 381,
+        "cls": 0.12825847982184074,
+        "si": 5793
+      }
+    },
+    {
+      "url": "https://www.movistar.es/mas-servicios",
+      "desktop": {
+        "performance": 75,
+        "accessibility": 87,
+        "bestPractices": 100,
+        "seo": 92,
+        "fcp": 1676,
+        "lcp": 2812,
+        "tbt": null,
+        "cls": 0.016332870423311684,
+        "si": 2091
+      },
+      "mobile": {
+        "performance": 60,
+        "accessibility": 87,
+        "bestPractices": 100,
+        "seo": 92,
+        "fcp": 4792,
+        "lcp": 10074,
+        "tbt": 189,
+        "cls": 0.0005399190372801721,
+        "si": 4792
+      }
+    },
+    {
+      "url": "https://www.movistar.es/atencion-cliente/ayuda",
+      "desktop": {
+        "performance": 75,
+        "accessibility": 87,
+        "bestPractices": 81,
+        "seo": 92,
+        "fcp": 1693,
+        "lcp": 3009,
+        "tbt": null,
+        "cls": 0.036053379273845776,
+        "si": 1693
+      },
+      "mobile": {
+        "performance": 54,
+        "accessibility": 87,
+        "bestPractices": 82,
+        "seo": 92,
+        "fcp": 3935,
+        "lcp": 9234,
+        "tbt": 472,
+        "cls": 0.005403202061375087,
+        "si": 4241
+      }
+    },
+    {
+      "url": "https://www.movistar.es/empleados",
+      "desktop": {
+        "performance": 75,
+        "accessibility": 100,
+        "bestPractices": 100,
+        "seo": 54,
+        "fcp": 1758,
+        "lcp": 2895,
+        "tbt": null,
+        "cls": 0.02195140812061662,
+        "si": 1758
+      },
+      "mobile": {
+        "performance": 40,
+        "accessibility": 98,
+        "bestPractices": 100,
+        "seo": 54,
+        "fcp": 7588,
+        "lcp": 13071,
+        "tbt": 226,
+        "cls": 0.22850268547342448,
+        "si": 12039
+      }
+    }
+  ]
+}
