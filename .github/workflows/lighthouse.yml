@@ -3,7 +3,7 @@ name: Lighthouse Analysis
 on:
   schedule:
     # Ejecutar todos los dias a las 6:00 AM UTC (7:00 AM CET)
-    - cron: '0 9 * * *'
+    - cron: '0 8 * * *'
   workflow_dispatch: # Permite ejecución manual desde GitHub
 
 permissions:
